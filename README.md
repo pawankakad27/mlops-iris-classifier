@@ -1,5 +1,5 @@
 # MLOps Iris Classifier
-Version A
+Version B
 
 A sample ML project used to demonstrate Git-based version control
 workflows in an MLOps context.
