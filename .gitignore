@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-mlflow/
 venv/
 *.egg-info/
 
@@ -11,6 +12,9 @@ data/*.parquet
 models/*.pkl
 models/*.joblib
 mlruns/
+mlflow.db
+mlartifacts/
+confusion_matrix_*.png
 
 # Jupyter
 .ipynb_checkpoints/
