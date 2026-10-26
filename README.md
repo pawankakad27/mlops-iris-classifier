@@ -24,3 +24,7 @@ python src/compare_tuning_results.py
 ```
 
 The baseline script logs a default Decision Tree run, while the grid/random search scripts log every candidate configuration to the `iris-hyperparameter-tuning` experiment and compare the best-performing settings.
+
+## Continuous integration
+
+GitHub Actions runs compilation, linting, the data pipeline, tests, and a model-quality gate on pushes and pull requests. See [docs/CI_PIPELINE.md](docs/CI_PIPELINE.md) for the jobs, reports, and branch-protection setup.

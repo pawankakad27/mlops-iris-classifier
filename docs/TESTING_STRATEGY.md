@@ -12,7 +12,7 @@ This project implements the Experiment 8 test suite for data processing, trainin
 | `tests/test_training_pipeline.py` | Pipeline | Exercises the training flow on a small synthetic dataset and checks model output structure. |
 | `tests/test_model_quality.py` | Model quality | Confirms the model meets a minimum quality threshold and emits valid labels. |
 
-The project uses `pytest` with `pytest-cov` to run the suite and emit JUnit XML output. The current measured coverage for the active source files is approximately 17% overall, with the pipeline modules covering the majority of their branches and edge cases.
+The project uses `pytest` with `pytest-cov` to run the suite and emit JUnit XML output. The latest local full-suite run measured 19% overall source coverage; the data pipeline modules reached 76% coverage for validation, 78% for feature engineering, and 84% for preprocessing.
 
 ## Execution
 

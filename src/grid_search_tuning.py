@@ -1,14 +1,11 @@
 """Run a grid search over a Random Forest and log every candidate trial."""
 
-import os
-from itertools import product
-
 import mlflow
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
-from baseline_model import EXPERIMENT_NAME, FEATURE_COLUMNS, get_tracking_uri, load_dataset
+from baseline_model import EXPERIMENT_NAME, get_tracking_uri, load_dataset
 
 PARAM_GRID = {
     "n_estimators": [50, 100, 200],
@@ -35,7 +32,9 @@ def run_grid_search(data_path: str = "data/processed/iris_features.csv") -> pd.D
     search.fit(X_train, y_train)
 
     results = []
-    for index, (params, score) in enumerate(zip(search.cv_results_["params"], search.cv_results_["mean_test_score"])):
+    for index, (params, score) in enumerate(
+        zip(search.cv_results_["params"], search.cv_results_["mean_test_score"])
+    ):
         with mlflow.start_run(run_name=f"grid_trial_{index + 1}") as run:
             mlflow.log_params({k: str(v) if v is None else v for k, v in params.items()})
             mlflow.log_param("search_method", "grid")

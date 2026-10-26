@@ -42,7 +42,9 @@ def compare_tuning_results(experiment_name: str = EXPERIMENT_NAME) -> pd.DataFra
                 "run_name": run.data.tags.get("mlflow.runName", run.info.run_id),
                 "search_method": params.get("search_method", "baseline"),
                 "model_type": params.get("model_type", "DecisionTreeClassifier"),
-                "score": _metric_value(run, "cv_f1_macro_mean", "mean_test_f1_macro", "test_f1_macro"),
+                "score": _metric_value(
+                    run, "cv_f1_macro_mean", "mean_test_f1_macro", "test_f1_macro"
+                ),
                 "params": params,
             }
         )

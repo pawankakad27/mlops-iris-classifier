@@ -1,8 +1,5 @@
 """Run a random search over a Random Forest and log each sampled trial."""
 
-import os
-from typing import Dict, List
-
 import mlflow
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -18,7 +15,9 @@ PARAM_DISTRIBUTIONS = {
 }
 
 
-def run_random_search(data_path: str = "data/processed/iris_features.csv", n_iter: int = 12) -> pd.DataFrame:
+def run_random_search(
+    data_path: str = "data/processed/iris_features.csv", n_iter: int = 12
+) -> pd.DataFrame:
     mlflow.set_tracking_uri(get_tracking_uri())
     mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -37,7 +36,9 @@ def run_random_search(data_path: str = "data/processed/iris_features.csv", n_ite
     search.fit(X_train, y_train)
 
     results = []
-    for index, (params, score) in enumerate(zip(search.cv_results_["params"], search.cv_results_["mean_test_score"])):
+    for index, (params, score) in enumerate(
+        zip(search.cv_results_["params"], search.cv_results_["mean_test_score"])
+    ):
         with mlflow.start_run(run_name=f"random_trial_{index + 1}") as run:
             mlflow.log_params({k: str(v) if v is None else v for k, v in params.items()})
             mlflow.log_param("search_method", "random")
