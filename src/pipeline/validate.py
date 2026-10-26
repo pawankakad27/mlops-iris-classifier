@@ -63,7 +63,9 @@ def validate(input_path: str) -> pd.DataFrame:
     if errors:
         for error in errors:
             logger.error(error)
-        raise DataValidationError(f"Validation failed with {len(errors)} error(s)")
+        raise DataValidationError(
+            f"Validation failed with {len(errors)} error(s): " + "; ".join(errors)
+        )
 
     logger.info(
         "Validation PASSED: %d rows, %d columns, all checks satisfied",
